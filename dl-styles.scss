@@ -1,0 +1,435 @@
+/* function～add_actionのコードをfunctions.phpの一番最後にコピペするとdl-styles.scssの読み込みが出来ます。 */
+// function add_scripts() {
+// 	wp_enqueue_style('dl-styles', get_template_directory_uri().'/dl-styles.scss', filemtime( get_theme_file_path('/dl-styles.scss')),
+// 	 'all');
+// 	wp_enqueue_style('fontawesome_script', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'); 
+// 	wp_enqueue_style('anime', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+// 	wp_enqueue_script('hamburger', get_theme_file_uri(). '/js/hamburger.js', array('jquery'), 'all');
+// 	wp_enqueue_script('slick.min', get_stylesheet_directory_uri().'/slick/slick.min.js', array( 'jquery' ), '1.8.1', true );
+// 	wp_enqueue_style('slickCSS', get_template_directory_uri().'/slick/slick.css', array(), 'all');
+// }
+// add_action( 'wp_enqueue_scripts', 'add_scripts' );
+
+/* このoutlineは画面外にはみ出している要素を探すためのコードです。
+ * コメントアウトを外すと要素の外枠に赤線がつきます。
+ */
+/* *{
+    outline: 2px red solid;
+} */
+
+/* -------------------------------------------------------------------------- */
+/*	0. CSS Reset - START
+/* -------------------------------------------------------------------------- */
+html,
+body {
+    border: none;
+	margin: 0;
+	padding: 0;
+    -webkit-appearance: none;
+    -webkit-text-size-adjust: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+address,
+big,
+cite,
+code,
+em,
+font,
+img,
+small,
+strike,
+sub,
+sup,
+li,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend,
+button,
+table,
+caption,
+tr,
+th,
+td {
+	border: none;
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0;
+	padding: 0;
+	text-align: inherit;
+}
+
+blockquote::before,
+blockquote::after {
+	content: "";
+}
+
+/* -------------------------------------------------------------------------- */
+/*	0. CSS Reset - END
+/* -------------------------------------------------------------------------- */
+
+.page {
+    margin-bottom: 0;
+}
+
+$break-point: (
+    size-minsp: 375px,
+    size-sp: 480px,
+    size-tab: 768px,
+    size-pc: 1024px,
+    size-wpc: 1920px,
+);
+
+// メディアクエリを@mixinで定義
+@mixin media-queries( $key ) {
+  @media ( min-width: map-get( $break-point, $key )) {
+    @content;
+  }
+}
+
+@mixin wordpress-theme {
+    @include media-queries( size-minsp ) {
+        // header.phpのSass
+        .site {
+
+            & .site-header {
+                & .site-branding {
+                    & .site-title {
+    
+                    }
+                    & .site-description {
+    
+                    }
+                }
+            
+                & .main-navigation {
+                    & button {
+    
+                    }
+                }
+            }
+            // page.phpのSass
+            & .site-main {
+                
+                // content.phpのSass
+                & article {
+                    & .entry-header {
+                        & h1 {
+        
+                        }
+                        & h2 {
+        
+                        }
+                        & .entry-meta {
+        
+                        }
+                    }
+        
+                    // <?php テーマ名_post_thumbnail();?>で出力すると、.post-thumbnailになります。
+                    & .post-thumbnail {
+        
+                    }
+        
+                    & .entry-content {
+        
+                    }
+        
+                    & .entry-footer {
+        
+                    }
+        
+                    & .entry-footer {
+        
+                    }
+                }
+    
+            }
+
+            // footer.phpのSass
+            & .site-footer {
+                & .site-info {
+    
+                }
+            }
+
+        }
+    }
+    @include media-queries( size-sp ) {
+        // header.phpのSass
+        .site {
+
+            & .site-header {
+                & .site-branding {
+                    & .site-title {
+    
+                    }
+                    & .site-description {
+    
+                    }
+                }
+            
+                & .main-navigation {
+                    & button {
+    
+                    }
+                }
+            }
+            // page.phpのSass
+            & .site-main {
+                
+                // content.phpのSass
+                & article {
+                    & .entry-header {
+                        & h1 {
+        
+                        }
+                        & h2 {
+        
+                        }
+                        & .entry-meta {
+        
+                        }
+                    }
+        
+                    // <?php テーマ名_post_thumbnail();?>で出力すると、.post-thumbnailになります。
+                    & .post-thumbnail {
+        
+                    }
+        
+                    & .entry-content {
+        
+                    }
+        
+                    & .entry-footer {
+        
+                    }
+        
+                    & .entry-footer {
+        
+                    }
+                }
+    
+            }
+
+            // footer.phpのSass
+            & .site-footer {
+                & .site-info {
+    
+                }
+            }
+
+        }
+    }
+    @include media-queries( size-tab ) {
+        // header.phpのSass
+        // ※ここに.siteのCSS情報を記述。
+
+
+        & .site-header {
+            & .site-branding {
+                & .site-title {
+
+                }
+                & .site-description {
+
+                }
+            }
+        
+            & .main-navigation {
+                & button {
+
+                }
+            }
+        }
+        // page.phpのSass
+        & .site-main {
+            
+            // content.phpのSass
+            & article {
+                & .entry-header {
+                    & h1 {
+    
+                    }
+                    & h2 {
+    
+                    }
+                    & .entry-meta {
+    
+                    }
+                }
+    
+                // <?php テーマ名_post_thumbnail();?>で出力すると、.post-thumbnailになります。
+                & .post-thumbnail {
+    
+                }
+    
+                & .entry-content {
+    
+                }
+    
+                & .entry-footer {
+    
+                }
+    
+                & .entry-footer {
+    
+                }
+            }
+
+        }
+
+        // footer.phpのSass
+        & .site-footer {
+            & .site-info {
+
+            }
+        }
+
+    }
+    @include media-queries( size-pc )  {
+        // header.phpのSass
+        // ※ここに.siteのCSS情報を記述。
+
+        & .site-header {
+            & .site-branding {
+                & .site-title {
+
+                }
+                & .site-description {
+
+                }
+            }
+        
+            & .main-navigation {
+                & button {
+
+                }
+            }
+        }
+        // page.phpのSass
+        & .site-main {
+            
+            // content.phpのSass
+            & article {
+                & .entry-header {
+                    & h1 {
+    
+                    }
+                    & h2 {
+    
+                    }
+                    & .entry-meta {
+    
+                    }
+                }
+    
+                // <?php テーマ名_post_thumbnail();?>で出力すると、.post-thumbnailになります。
+                & .post-thumbnail {
+    
+                }
+    
+                & .entry-content {
+    
+                }
+    
+                & .entry-footer {
+    
+                }
+    
+                & .entry-footer {
+    
+                }
+            }
+
+        }
+
+        // footer.phpのSass
+        & .site-footer {
+            & .site-info {
+
+            }
+        }
+
+    }
+    @include media-queries( size-wpc )  {
+        // header.phpのSass
+        // ※ここに.siteのCSS情報を記述。
+
+
+        & .site-header {
+            & .site-branding {
+                & .site-title {
+
+                }
+                & .site-description {
+
+                }
+            }
+        
+            & .main-navigation {
+                & button {
+
+                }
+            }
+        }
+        // page.phpのSass
+        & .site-main {
+            
+            // content.phpのSass
+            & article {
+                & .entry-header {
+                    & h1 {
+    
+                    }
+                    & h2 {
+    
+                    }
+                    & .entry-meta {
+    
+                    }
+                }
+    
+                // <?php テーマ名_post_thumbnail();?>で出力すると、.post-thumbnailになります。
+                & .post-thumbnail {
+    
+                }
+    
+                & .entry-content {
+    
+                }
+    
+                & .entry-footer {
+    
+                }
+    
+                & .entry-footer {
+    
+                }
+            }
+
+        }
+
+        // footer.phpのSass
+        & .site-footer {
+            & .site-info {
+
+            }
+        }
+
+    }
+}
+.site {
+    @include wordpress-theme;
+}
